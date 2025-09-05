@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WB Orders UI</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px 20px; margin-bottom: 20px; cursor: pointer; }
+        h2 { margin-top: 30px; }
+        .card { border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 15px; background: #fafafa; }
+        .section { margin-bottom: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 6px; text-align: left; }
+        th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+<h1>WB Orders</h1>
+
+<h2>Get Order by ID</h2>
+<input type="text" id="orderUidInput" placeholder="Enter order_uid">
+<button onclick="getOrder()">Get Order</button>
+<div id="orderResult"></div>
+
+<h2>Get All Orders</h2>
+<button onclick="getOrders()">Get Orders</button>
+<div id="ordersResult"></div>
+
+<h2>Publish Order</h2>
+<textarea id="orderJsonInput" rows="15" placeholder="Paste JSON order here"></textarea>
+<button onclick="publishOrder()">Publish Order</button>
+<pre id="publishResult"></pre>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

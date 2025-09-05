@@ -1,0 +1,30 @@
+env: local
+
+
+ttl: 24h
+
+
+http:
+  address: localhost:8081
+  timeout: 4s
+  idle_timeout: 60s
+
+
+postgres:
+  postgres_host: localhost
+  postgres_user: root
+  postgres_password: 1234
+  postgres_db: postgres
+  postgres_port: 5432
+
+  postgres_max_conn: 10
+  postgres_min_conn: 5
+
+
+kafka:
+  brokers:
+    - "localhost:9095"
+    - "localhost:9096"
+    - "localhost:9097"
+  topic: "orders"
+  group_id: "order-service-group"
