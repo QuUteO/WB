@@ -7,9 +7,12 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/IBM/sarama"
+	"github.com/go-playground/validator/v10"
 	"log"
 	"time"
 )
+
+var validate = validator.New()
 
 type Consumer struct {
 	OrderService serv.OrderService
@@ -30,6 +33,18 @@ func (c *Consumer) ConsumeClaim(sess sarama.ConsumerGroupSession, claim sarama.C
 		var order model.Order
 		if err := json.Unmarshal(msg.Value, &order); err != nil {
 			log.Println("Kafka: bad message:", err)
+			continue
+		}
+
+		// проверка на nil
+		if order.Delivery == (model.Delivery{}) || order.Payment == (model.Payment{}) || len(order.Items) == 0 {
+			log.Println("Kafka: order has empty required fields")
+			continue
+		}
+
+		// валидируем
+		if err := validate.Struct(&order); err != nil {
+			log.Println("Kafka: struct validation failed:", err)
 			continue
 		}
 

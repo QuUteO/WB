@@ -11,7 +11,6 @@ import (
 	model "WB_Service/intrenal/models"
 	"WB_Service/intrenal/service"
 	"errors"
-	"fmt"
 	"github.com/IBM/sarama"
 
 	"context"
@@ -45,8 +44,7 @@ func main() {
 
 	cacheService := cache.NewCache(cfg.TTl)
 	// восстанавливаем кеш при перезапуске
-	ordersss := cacheService.ReStoreCache(map[string]*model.Order{})
-	fmt.Println(ordersss)
+	_ = cacheService.ReStoreCache(map[string]*model.Order{})
 
 	orderService := service.NewService(dbService, cacheService, log)
 
@@ -66,9 +64,9 @@ func main() {
 	router.Use(middleware.Recoverer)
 
 	// API
-	router.Get("/order/{order_uid}", handlers.GetOrder)
-	router.Get("/orders", handlers.GetOrders)
-	router.Post("/publish-order", handlers.PublishOrderHandler)
+	router.Get("/order/{order_uid}", handlers.GetOrderHandler)
+	router.Get("/orders", handlers.GetOrdersHandler)
+	router.Post("/publish-order", handlers.SaveOrderHandler)
 
 	// Статика (CSS, JS и т.п.)
 	fs := http.FileServer(http.Dir("./static"))

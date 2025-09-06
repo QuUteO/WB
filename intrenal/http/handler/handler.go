@@ -37,8 +37,8 @@ func (h *Handler) SaveOrder(ctx context.Context, order *model.Order) error {
 	return nil
 }
 
-// GetOrder GET /orders/{order_uid}
-func (h *Handler) GetOrder(w http.ResponseWriter, r *http.Request) {
+// GetOrderHandler GetOrder GET /orders/{order_uid}
+func (h *Handler) GetOrderHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 	defer cancel()
 
@@ -63,8 +63,8 @@ func (h *Handler) GetOrder(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(order)
 }
 
-// GetOrders GET /orders
-func (h *Handler) GetOrders(w http.ResponseWriter, r *http.Request) {
+// GetOrdersHandler GetOrders GET /orders
+func (h *Handler) GetOrdersHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 	defer cancel()
 
@@ -84,8 +84,8 @@ func (h *Handler) GetOrders(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(resp)
 }
 
-// PublishOrderHandler принимает JSON заказа и отправляет в Kafka
-func (h *Handler) PublishOrderHandler(w http.ResponseWriter, r *http.Request) {
+// SaveOrderHandler PublishOrderHandler принимает JSON заказа и отправляет в Kafka
+func (h *Handler) SaveOrderHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 	defer cancel()
 
