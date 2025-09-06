@@ -14,8 +14,9 @@ go run cmd/main.go --config=./config/config.yaml
 
 
 
+[zapis-ekrana-2025-09-06-v-103241-2_z4EgPx0I.mp4.zip](https://github.com/user-attachments/files/22185450/zapis-ekrana-2025-09-06-v-103241-2_z4EgPx0I.mp4.zip)
 
 
-https://github.com/user-attachments/assets/0fdae541-a5eb-4b16-93b3-3a8955932edd
+
 
 
